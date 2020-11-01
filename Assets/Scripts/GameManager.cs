@@ -8,16 +8,16 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
-    private float spawnRate = 1.0f;
-
     private int score;
 
+    public GameObject titleScreen;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
 
     public bool isGameActive;
 
+    private float spawnRate = 1.0f;
 
     IEnumerator SpawnTarget()
     {
@@ -46,21 +46,22 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-    }
-
-    public void Show()
-    {
-        Debug.Log("WHAT UP");
     }
 
 
-    void Start()
+    public void StartGame(int difficulty)
     {
+        spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         score = 0;
         UpdateScore(0);
+        titleScreen.gameObject.SetActive(false);
+    }
+
+    void Start()
+    {
+
     }
 
     void Update()

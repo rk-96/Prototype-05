@@ -21,7 +21,9 @@ public class Target : MonoBehaviour
         return Vector3.up * Random.Range(minSpeed, maxSpeed);
     }
 
-    float RandomTorque() { return Random.Range(-maxTorque, maxTorque); }
+    float RandomTorque() { 
+        return Random.Range(-maxTorque, maxTorque); 
+    }
 
     Vector3 RandomSpawnPos()
     {
